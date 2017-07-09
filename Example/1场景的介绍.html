@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>phaser 图片的使用</title>
+		<style type="text/css">
+			canvas {
+				margin: 0 auto;
+			}
+		</style>
+		<script src="js/phaser-2.4.1.min.js"></script>
+	</head>
+
+	<body>
+
+		<div id="game">
+
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
+
+		function initMap() {
+			var pointer; //获取鼠标的指针；
+			this.init = function() {};
+			this.preload = function() {
+				//加载一张图片资源,这里的this就是 game
+				//加载一张地图资源
+				this.load.image('bg', 'image/map.png');
+			};
+			this.create = function() {
+				//设置世界大小；
+				game.world.setBounds(0, 0, 960, 960);
+				this.add.image(0, 0, 'bg');
+				pointer = game.input.activePointer;
+			}
+			this.update = function() {
+				//鼠标放到场景四周，摄像机会移动看到不同的地方
+				if(pointer.position.x > game.width - 20 && pointer.position.x < game.width - 5) {
+					game.camera.x += 8;//改变摄像机的位置
+				}else if(pointer.position.x >5 && pointer.position.x < 20){
+					game.camera.x -= 8;
+				}else if(pointer.position.y >game.height - 20 && pointer.position.y < game.height - 5){
+					game.camera.y += 8;
+				}else if(pointer.position.y >5 && pointer.position.y < 20){
+					game.camera.y -= 8;
+				}
+			}
+		}
+		game.state.add('initMap', initMap); //导入场景
+		game.state.start('initMap'); //开启一个场景
+	</script>
+
+</html>

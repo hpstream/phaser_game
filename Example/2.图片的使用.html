@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>phaser 图片的使用</title>
+		<style type="text/css">
+			canvas {
+				margin: 0 auto;
+			}
+		</style>
+		<script src="js/phaser-2.4.1.min.js"></script>
+	</head>
+
+	<body>
+
+		<div id="game">
+
+		</div>
+	</body>
+
+	<script type="text/javascript">
+
+		var game = new Phaser.Game(400, 500, Phaser.AUTO, 'game');
+		function initMap() {
+			this.init = function(){};
+			this.preload = function() {
+				//加载背景图
+				this.load.image('bg','image/map.png');
+				
+				//加载一张图片资源,这里的this就是 game
+				this.load.image('gongbing', 'image/gongbing.png');
+			};
+			this.create = function() {
+				//设置世界大小；
+				game.world.setBounds(0, 0, 960, 960);
+				this.add.image(0, 0, 'bg');
+				//把图片资源加载到场景中
+				this.add.image(0, 0, 'gongbing');
+			}
+		}
+		game.state.add('initMap', initMap); //导入场景
+		game.state.start('initMap'); //开启一个场景
+
+
+	</script>
+
+</html>
