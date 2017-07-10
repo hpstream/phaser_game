@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/phaser-2.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<body>
+		<div id="game"></div>
+	</body>
+	<script type="text/javascript">
+		var game = new Phaser.Game(288, 505, Phaser.AUTO, 'game');
+
+		function initMap() {
+			this.preload = function() {
+				this.load.image('bg', './image/background.png');
+			}
+			this.create = function() {
+				var bg = game.add.tileSprite(0,0,game.width,game.height,'bg');
+				bg.autoScroll(20,0);
+			
+			}
+		}
+
+		game.state.add('initMap', initMap);
+		game.state.start('initMap');
+	</script>
+
+</html>

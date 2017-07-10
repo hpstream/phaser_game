@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/phaser-2.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<body>
+		<div id="game"></div>
+	</body>
+	<script type="text/javascript">
+		var game = new Phaser.Game(400, 500, Phaser.AUTO, 'game');
+
+		function initMap() {
+			this.preload = function() {
+				this.load.image('cat', './image/cat.png');
+			}
+			this.create = function() {
+				//锚点的不同位置；
+				/**
+				 * 设置描点的方法：
+				 * 			sprite.anchor.x || sprite.anchor.y;
+				 * 			srpite.anchor.set(x,y);
+				 */
+				var cat1 = game.add.sprite(100,100, 'cat');
+				cat1.anchor.set(1, 1);
+
+				var cat2 = game.add.sprite(100, 100, 'cat');
+				cat2.anchor.set(0.5, 0.5);
+
+				var cat3 = game.add.sprite(100, 100, 'cat');
+				cat3.anchor.set(0, 0);
+				//===================================
+				//控制机器猫移动
+				var cat4 = game.add.sprite(0,0,'cat');
+				//控制机器猫的三种方式
+				/***
+				 *  sprite.x  || sprite.y
+				 *  sprite.position.x || sprite.position.y
+				 *  sprite.position.set(x,y);
+				 */
+				cat4.position.set(200,0);
+				/**
+				 * 设置宽高： sprite.width || sprite.height;
+				 * 设置颜色：sprite.tint =0x00ff00;
+				 * 设置透明度 ： sprite.alpha = 0.5;
+				 * 设置缩放： sprite.scale.x = 2 || sprite.scale.y = 2;
+				 * 设置是否可见： sprite.visible  = true;
+				 * 设置元素是否存在 ： sprite.visible = true;
+				 *
+				 */
+			
+			}
+		}
+
+		game.state.add('initMap', initMap);
+		game.state.start('initMap');
+	</script>
+
+</html>
