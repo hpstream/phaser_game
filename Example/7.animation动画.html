@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/phaser-2.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<body>
+		<div id="game"></div>
+	</body>
+	<script type="text/javascript">
+		var game = new Phaser.Game(400, 500, Phaser.AUTO, 'game');
+
+		function initMap() {
+			this.preload = function() {
+				this.load.image('cat', './image/cat.png');
+			}
+			this.create = function() {
+				
+			}
+		}
+
+		game.state.add('initMap', initMap);
+		game.state.start('initMap');
+	</script>
+
+</html>

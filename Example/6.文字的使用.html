@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/phaser-2.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<body>
+		<div id="game"></div>
+	</body>
+	<script type="text/javascript">
+		var game = new Phaser.Game(400, 500, Phaser.AUTO, 'game');
+
+		function initMap() {
+			this.preload = function() {
+				//this.load.image('cat', './image/cat.png');
+			}
+			this.create = function() {
+				var text = game.add.text(0, 0, '你好\n世界');
+
+				text.fill = '#fff';
+				text.font = '微软雅黑';
+				text.fontSize = 60;
+				text.fontWeight = 'normal';
+				//text.style.backgroundColor = '#0f0'
+				text.stroke = '#f00';
+				text.strokeThickness = 10;
+				text.wordWrap = true;
+				text.wordWrapWidth = 150;
+			}
+		}
+
+		game.state.add('initMap', initMap);
+		game.state.start('initMap');
+	</script>
+
+</html>
