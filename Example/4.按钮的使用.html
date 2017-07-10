@@ -20,11 +20,11 @@
 	</body>
 
 	<script type="text/javascript">
+		//确认了画布大小以后无法在修改画布大小了；
 		var game = new Phaser.Game(400, 500, Phaser.AUTO, 'game');
-
+		
 		function initMap() {
 			this.init = function() {
-
 			};
 			this.preload = function() {
 
@@ -59,7 +59,9 @@
 				//鼠标或手指不在按钮上时
 				//按钮松开时
 				game.add.button(100, 100, 'startbutton', function() {
-					//game.state.start('initMap'); //开启一个场景
+					//改变canvas大小
+					
+					game.state.start('initMap'); //开启一个场景
 				}, 1,0,1,0);
 			}
 
