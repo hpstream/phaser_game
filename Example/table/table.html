@@ -1,33 +1,153 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			table{
-				border-right:1px solid #F00;
-				border-bottom:1px solid #F00;
+			.vertical.table_head {
+				border-top: 1px solid yellowgreen;
+				border-left: 1px solid yellowgreen;
 			}
-			tr{
-				
+			
+			.vertical.table_head div {
+				vertical-align: bottom;
 			}
-			td{
-				border-left:1px solid #F00;
-				border-top:1px solid #F00
-				border:solid 1px purple;
-				border-collapse:collapse;
-				padding:10px;
+			
+			.vertical .fr {
+				text-align: center;
+				display: inline-block;
+			}
+			
+			.vertical .cell {
+				padding-left: 5px;
+				padding-right: 5px;
+				height: 30px;
+				line-height: 30px;
+				border-bottom: 1px solid yellowgreen;
+				border-right: 1px solid yellowgreen;
+			}
+			
+			.vertical .root {
+				width: 30px;
+			}
+			
+			.Horizon_parent {
+				display: inline-block;
+			}
+			
+			.Horizon.table {
+				border-top: 1px solid yellowgreen;
+				border-left: 1px solid yellowgreen;
+			}
+			
+			.Horizon.table div {
+				vertical-align: bottom;
+			}
+			
+			.Horizon .fr {
+				text-align: center;
+			}
+			
+			.Horizon .parent {
+				display: inline-block;
+			}
+			
+			.Horizon .cell {
+				padding-left: 5px;
+				padding-right: 5px;
+				height: 30px;
+				line-height: 30px;
+				border-bottom: 1px solid yellowgreen;
+				border-right: 1px solid yellowgreen;
 			}
 		</style>
+
 	</head>
 	<script src="../js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+
 	<body>
-		
-		<table  border="0" cellspacing="0" cellpadding="0">
-			<tr>
-				<td>ddds</td>
-				<td>ddds</td>
-			</tr>
-		</table>
+
+		<div class="table table_head">
+
+		</div>
+
 	</body>
+	<script type="text/javascript">
+		var arr = [
+			{ pid: 0, id: 1, name: '形式案件总数' },
+			{ pid: 1, id: 11, name: '受理' },
+			{ pid: 1, id: 12, name: '新收' },
+			{ pid: 1, id: 13, name: '结案' },
+			{ pid: 1, id: 14, name: '未结' },
+			{ pid: 1, id: 15, name: '旧存' },
+			{ pid: 13, id: 21, name: "结案书" },
+			{ pid: 13, id: 22, name: "结案率" }
+		]
+		var opt = {
+			div: $('.table'),
+			data: arr,
+			dir: "vertical", //vertical(垂直),Horizon(水平)
+			type: ""
+
+		}
+		//加入一个child
+		function initTable(opt) {
+			var opt = $.extend({}, opt);
+			//确定是横向显示还是纵向显示
+			opt.div.addClass(opt.dir);
+			for(var i = 0; i < opt.data.length; i++) {
+				if(opt.data[i].pid == "0") {
+					opt.div.append(CreateCell(opt.data[i], "root"));
+				} else {
+					opt.div.find('#' + opt.data[i].pid).append(CreateCell(opt.data[i], "child"));
+				}
+			}
+			if(opt.dir == "vertical") {
+				//单独处理 根节点的高度
+				var rootHeigth = opt.div.find('.root').siblings().outerHeight();
+
+				//控制 每个单元格的高度
+				opt.div.find('.root').height(rootHeigth);
+				var arr = opt.div.find('.cell.child');
+				$.each(arr, function() {
+					var heigth = $(this).siblings().outerHeight();
+					if(heigth != 0) {
+						$(this).height(heigth - 1);
+						$(this).css({
+							"lineHeight": heigth + "px"
+						});
+					} else {
+						$(this).width("100%");
+						$(this).siblings().remove();
+					}
+				})
+			}
+			
+			if(opt.dir == "Horizon"){
+				var arr = opt.div.find('.cell.child');
+				$.each(arr, function() {
+					var heigth = $(this).siblings().outerHeight();
+					if(heigth == 0) {
+						$(this).height($(this).parent().parent().height()-1);
+						$(this).css({
+							"lineHeight": $(this).parent().parent().height()-1 + "px"
+						});
+						$(this).siblings().remove();
+					}
+				})
+			}
+		}
+		//生成单元格；
+		function CreateCell(opt, root, type) {
+
+			var str = '<div pid="' + opt.pid + '" class="parent">' +
+				'<div  class="fr cell ' + root + '">' + opt.name + '</div>' +
+				'<div id="' + opt.id + '" class="fr"></div>' +
+				'</div>';
+			return str;
+		}
+		initTable(opt);
+	</script>
+
 </html>

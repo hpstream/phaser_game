@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	
+	<script type="text/javascript">
+		
+		digui(9,9);
+		function digui(x,y){
+			
+			if(x==1 && y==1){
+				console.log(x+"*"+y+"=" +x*y);
+				return ;
+			}else{
+				if(y==1){
+					  digui(x-1, x-1);
+				}else{
+					digui(x,y-1);
+				}
+			}
+			
+			
+			console.log(x+"*"+y+"=" +x*y);
+		}
+	</script>
+</html>
