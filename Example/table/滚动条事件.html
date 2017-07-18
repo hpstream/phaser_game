@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		#div1{
+			height:500px;
+			overflow: auto;
+		}
+		#div2{
+			height: 1000px;
+			background: cornflowerblue;
+			width: 150%;
+		}
+	</style>
+	<body>
+		<div id="div1">
+			<div id="div2"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		$(function($){
+			$('#div1').scroll(function(e) {
+			   console.log(e.currentTarget.scrollLeft,e.currentTarget.scrollTop);
+			  });
+			  
+		  $('#div1').click(function(e) {
+		  
+		  });
+		});
+	</script>
+</html>

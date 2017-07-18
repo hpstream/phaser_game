@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script src="../Example/js/characters.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var arr = [10,9,8,7,6,5,4,3,2,1];
+//		for(var i = 0; i < 10; i++) {
+//			arr.push(Math.floor(Math.random() * 100));
+//		}
+//		console.log(arr);
+		//快速排序
+
+		function quickSort(array) {
+			function sort(prev, numsize) {
+				var nonius = prev;
+				var j = numsize - 1;
+				var flag = array[prev];
+				if((numsize - prev) > 1) {
+					while(nonius < j) {
+						//从右往左找，
+						for(; nonius < j; j--) {
+							if(array[j] < flag) {
+								array[nonius++] = array[j];　 //a[i] = a[j]; i += 1;
+								break;
+							};
+						}
+						//从左往右找
+						for(; nonius < j; nonius++) {
+							if(array[nonius] > flag) {
+								array[j--] = array[nonius];
+								break;
+							}
+						}
+					}
+					array[nonius] = flag;
+					sort(0, nonius);
+					sort(nonius + 1, numsize);
+				}
+			}
+			sort(0, array.length);
+			return array;
+		}
+		
+		console.log(quickSort(arr));
+		
+		//console.log(Chineses.get(10));
+		
+	</script>
+
+</html>
