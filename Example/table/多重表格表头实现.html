@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				border: 0;
+			}
+			tr{
+				border: 1px solid pink;		
+			}
+			td{
+				border: 1px solid pink;	
+				
+			}
+			table{
+				text-align: center;
+				margin: -1px;			
+				border: 1px solid pink;		
+				border-collapse:collapse;
+				border-spacing:0;
+				empty-cells:hide;
+			}
+			.root{
+				width: 30px;
+				word-wrap: break-word;
+			}
+			.left,.rigth{
+			
+				height: 300px;
+				border: 1px solid pink;
+			}
+			.left{
+				float: left;
+				width: 300px;
+			}
+			.rigth{	
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="" cellspacing="0" cellpadding="0">	
+			<tr>
+				<td ><div class="root">ssseeee</div></td>
+				<td>
+					<table>
+						<tr><td>sss</td></tr>
+						<tr><td>sss</td></tr>
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<td>dd</td>
+										<td>
+											<table>
+												<tr><td>dd</td></tr>
+												<tr><td>dd</td></tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+							
+						</tr>
+						<tr><td>sss</td></tr>
+						<tr><td>sss</td></tr>
+						<tr><td>sss</td></tr>
+						
+					</table>
+				</td>
+			</tr>
+		</table>
+		<div style="margin-top: 100px;"></div>
+		
+		<div>
+			<div class="left">d</div>
+			<div class="rigth"></div>
+		</div>
+	</body>
+</html>
