@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<script src="../js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<style>
 			*{
 				padding: 0;
@@ -42,42 +43,49 @@
 		</style>
 	</head>
 	<body>
-		<table border="" cellspacing="0" cellpadding="0">	
-			<tr>
-				<td ><div class="root">ssseeee</div></td>
-				<td>
-					<table>
-						<tr><td>sss</td></tr>
-						<tr><td>sss</td></tr>
-						<tr>
-							<td>
-								<table>
-									<tr>
-										<td>dd</td>
-										<td>
-											<table>
-												<tr><td>dd</td></tr>
-												<tr><td>dd</td></tr>
-											</table>
-										</td>
-									</tr>
-								</table>
-							</td>
-							
-						</tr>
-						<tr><td>sss</td></tr>
-						<tr><td>sss</td></tr>
-						<tr><td>sss</td></tr>
-						
-					</table>
-				</td>
-			</tr>
-		</table>
-		<div style="margin-top: 100px;"></div>
 		
-		<div>
-			<div class="left">d</div>
-			<div class="rigth"></div>
+		<div class="table">
+			
 		</div>
+		
 	</body>
+	
+	<script type="text/javascript">
+		   var arr = [
+               {pid: 0, id: 1, name: '形式案件总数'},
+               {pid: 1, id: 11, name: '受理'},
+               {pid: 1, id: 12, name: '新收'},
+               {pid: 1, id: 13, name: '结案'},
+               {pid: 1, id: 14, name: '未结'},
+               {pid: 1, id: 15, name: '旧存'},
+               {pid: 13, id: 21, name: "结案书"},
+               {pid: 13, id: 22, name: "结案率"},
+               {pid: 0, id: 2, name: '形式案件总数'},
+               {pid: 2, id: 33, name: '受理'},
+               {pid: 2, id: 44, name: '新收'},
+               {pid: 2, id: 55, name: '结案'},
+               {pid: 2, id: 66, name: '未结'},
+               {pid: 2, id: 77, name: '旧存'},
+               {pid: 44, id: 88, name: "结案书"},
+               {pid: 44, id: 99, name: "结案率"}
+           ]
+		 
+		 function cell(opt){
+		 	var str = '<table  pid="'+opt.pid+'"> <tbody>'+'<tr><td>'+opt.name+'</td><td id="'+opt.id +'"></td></tr></tbody></table>';
+//				var str ='<table border="" cellspacing="" cellpadding=""><tr><td>Data</td></tr></table>';
+			return str;
+		 }
+		 	
+					
+		for(var i=0 ;i<arr.length;i++){
+			if(arr[i].pid == 0 ){
+				$(".table").append(cell(arr[i]));
+			}else{
+				console.log($('.table [id = '+arr[i].pid+'] '));
+				$('.table [id = '+arr[i].pid+']').append(cell(arr[i]));
+			}
+		}
+		 
+		 
+	</script>
 </html>

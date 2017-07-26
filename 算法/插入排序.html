@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+	<script type="text/javascript">
+		var arr = [];
+		for(var i = 0; i < 10; i++) {
+			arr.push(Math.floor(Math.random() * 100));
+		}
+
+		
+
+		function insertSort(arr) {
+			for(var i = 1; i < arr.length; i++) {
+				var key, head;
+				key = arr[i];
+				head = i - 1;
+				while(arr[i] > key && i >= 0) {
+					arr[i + 1] = arr[i]
+					i--;
+				}
+				arr[i] = key;
+			}
+		}
+		
+	//分治法排序
+	console.log(arr);
+	 
+
+	
+	console.log(arr);
+	</script>
+
+</html>
