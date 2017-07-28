@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+	</head>
+
+	<body>
+
+	</body>
+	<script>
+		var number = [1, 2, 3, 4, 5]; //我们操作的数组
+		var book = [];
+		var state = []; //记录状态的数组
+		var shu = []; //枚举出来答案得到的数组。
+		function dfs(step, n) { //n，代表取几个数出来。
+
+			if(step == n) { //判断条件，判断是否取出来了个数。
+				console.log(state.join(""));
+				shu.push(state.join("")); //把取出来的书方法数组中
+				return 0; //结束循环
+			}
+			for(var i = 0; i < number.length; i++) { //循环数据		
+					if(! book[i]){	
+						book[i]=1;
+						state.push(number[i]); //保存当前环境
+						dfs(step + 1, n);
+						state.pop(number[i]); //回退到上一层的环境
+						book[i]=0;
+					}
+			}
+		}
+
+		//dfs(0, 2);
+
+		var c =[];
+		c[3] = 1;
+		console.log(c);
+		
+	</script>
+
+</html>
