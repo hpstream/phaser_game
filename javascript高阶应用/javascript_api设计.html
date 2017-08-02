@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		#traffic>li {
+			display: block;
+		}
+		
+		#traffic span {
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			background-color: gray;
+			margin: 5px;
+			border-radius: 50%;
+		}
+		
+		#traffic.stop li:nth-child(1) span {
+			background-color: #a00;
+		}
+		
+		#traffic.wait li:nth-child(2) span {
+			background-color: #aa0;
+		}
+		
+		#traffic.pass li:nth-child(3) span {
+			background-color: #0a0;
+		}
+	</style>
+
+	<body>
+		<ul id="traffic" class="wait">
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+		</ul>
+	</body>
+
+	<script type="text/javascript">
+		const traffic = document.getElementById("traffic");
+		//		方式1
+		//		(function reset(){
+		//			traffic.className ="wait";
+		//			
+		//			setTimeout(function(){
+		//				traffic.className = 'stop';
+		//				setTimeout(function(){
+		//					traffic.className = 'pass';
+		//					setTimeout(reset,500)
+		//				},500)
+		//			},500)
+		//		})();
+
+		//		方式2(缺点：封装性太差，暴露了全局变量)
+
+		//		var stateList = ['wait','stop','pass'];
+		//		var index=0;
+		//		setInterval(function(){
+		//			traffic.className = stateList[index++%3];
+		//		},1000)
+
+		//		方式3(复用性太差)
+		//		function start(traffic,statelist){
+		//			var index=0;
+		//			setInterval(function(){
+		//				traffic.className  = statelist[index++%3];
+		//			},100);
+		//		}
+		//		start(traffic,['wait','stop','pass'])
+
+		//	方式4 (无法控制不同的时间)
+		//		function poll() {
+		//			console.log(arguments);
+		//			let stateIndex = 0;
+		//			return function(...args) {
+		//				
+		//				let fn = fnList[stateIndex++ % fnList.length];
+		//				return fn.apply(this, args);
+		//			}
+		//		}
+		//
+		//		function setState(state) {
+		//			console.log(state);
+		//			traffic.className = state;
+		//		}
+		//
+		//		let trafficStatePoll = poll(setState.bind(null, "wait"),
+		//			setState.bind(null, "stop"),
+		//			setState.bind(null, "pass"));
+
+		//		setInterval(trafficStatePoll, 2000)
+//	方式五
+//		function wait(time) {
+//			return new Promise(function(resolve, reject){
+//
+//				setTimeout(resolve,time)
+//
+//			});
+//		}
+// 	
+// 		function setState(state){
+// 			console.log(state);
+//		  traffic.className = state;
+//		}
+//		function reset(){
+//			Promise.resolve()
+//					.then(setState.bind(null,'wait'))
+//					.then(wait.bind(null,1000))
+//					.then(setState.bind(null,'stop'))
+//					.then(wait.bind(null,1000))
+//					.then(setState.bind(null,'pass'))
+//					.then(wait.bind(null,1000))
+//					.then(reset.bind(null))
+//  				
+//		}
+		
+		var a = new Promise(function(resolve,reject){
+			
+			setTimeout(()=>{
+				console.log(a);
+				resolve();
+			},1000)
+		})
+		a.then(function(){
+			 
+		}).then()
+		
+		
+
+	</script>
+
+</html>

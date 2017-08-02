@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		
+		var handle= function(url,callback){
+			$.ajax(url,function(data){
+				if(typeof callback !== "function"){
+					throw new Error(callback +'不是函数');
+				}
+				callback(data);
+			})
+		}
+		
+		handle("http:www.baidu.com",function(data){
+			console.log(1);
+		})
+	</script>
+</html>

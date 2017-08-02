@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+<style type="text/css">
+		#traffic>li {
+			display: block;
+		}
+		
+		#traffic span {
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			background-color: gray;
+			margin: 5px;
+			border-radius: 50%;
+		}
+		
+		#traffic.stop li:nth-child(1) span {
+			background-color: #a00;
+		}
+		
+		#traffic.wait li:nth-child(2) span {
+			background-color: #aa0;
+		}
+		
+		#traffic.pass li:nth-child(3) span {
+			background-color: #0a0;
+		}
+	</style>
+
+	<body>
+		<ul id="traffic" class="wait">
+			<li><span></span></li>
+			<li><span></span></li>
+			<li><span></span></li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		const trafficEl = document.getElementById("traffic");
+
+		function TrafficProtocol(el, reset) {
+			this.subject = el;
+			this.autoReset = reset;
+			this.stateList = [];
+		}
+
+		TrafficProtocol.prototype.putState = function(fn) {
+			this.stateList.push(fn);
+		}
+
+		TrafficProtocol.prototype.reset = function() {
+			let subject = this.subject;
+
+			this.statePromise = Promise.resolve();
+			this.stateList.forEach((stateFn) => {
+				
+				this.statePromise = this.statePromise.then(() => {
+					return new Promise(resolve => {
+						stateFn(subject, resolve);
+					});
+				});
+			});
+			if(this.autoReset) {
+				
+				this.statePromise.then(this.reset.bind(this));
+			}
+		}
+
+		TrafficProtocol.prototype.start = function() {
+			this.reset();
+		}
+
+		var traffic = new TrafficProtocol(trafficEl, true);
+
+		traffic.putState(function(subject, next) {
+			subject.className = "wait";
+			setTimeout(next, 1000);
+		});
+
+		traffic.putState(function(subject, next) {
+			subject.className = "stop";
+			setTimeout(next, 2000);
+		});
+
+		traffic.putState(function(subject, next) {
+			subject.className = "pass";
+			setTimeout(next, 3000);
+		});
+
+		traffic.start();
+	</script>
+
+</html>

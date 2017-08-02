@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+	<script type="text/javascript">
+		Function.prototype.before = function(beforefn) {
+			var that = this;
+			return function() {
+				beforefn.apply(this, arguments);
+				return that.apply(this, arguments);
+			}
+		}
+		Function.prototype.after = function(afterfn) {
+			var that = this;
+			return function() {
+				that.apply(this, arguments);
+				afterfn.apply(this, arguments);
+				return that;
+			}
+
+		}
+
+		
+	</script>
+
+</html>

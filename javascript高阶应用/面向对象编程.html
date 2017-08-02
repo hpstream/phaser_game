@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		function Loop(reset){
+			this.list=[];
+			this.autoReset=reset;
+		}
+		Loop.prototype.putState =function(fn){
+			this.list.push(fn);
+		}
+		Loop.prototype.reset = function(){
+			
+			var pro = Promise.resolve();
+			this.list.forEach(function(fn){
+				pro =pro.then(function(){
+					 
+				})
+			})
+			if(this.autoReset){
+				pro.then(this.reset.bind(this));
+			}
+		}
+		Loop.prototype.start = function(){
+			this.reset();
+		}
+		
+		var traffic = new Loop(true);
+
+		traffic.putState(function(next) {
+			console.log(1);
+			setTimeout(next, 1000);
+		});
+
+		traffic.putState(function(next) {
+			console.log(2);
+			setTimeout(next, 2000);
+		});
+
+		traffic.putState(function(next) {
+			console.log(3);
+			setTimeout(next, 3000);
+		});
+		
+		traffic.start();
+	</script>
+</html>
