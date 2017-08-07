@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		#mao{
+			width: 50px;
+			height: 50px;
+			background: #47A3DA;
+			position: absolute;
+			border-radius: 50%;
+			left:0;
+		}
+	</style>
+	<body>
+		<div id="mao">
+			
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		
+		var ce = $('#mao')
+		
+		ce.on('mousedown',function(e){
+			
+			var positon  = {};
+			positon.x =  e.clientX;
+			positon.objX =$(this).position().left;
+		 
+			
+			$(document).on('mousemove',function(e){
+				  var isLeft = e.clientX - positon.x;
+				  	console.log(isLeft)
+				 ce.css("left", positon.objX + isLeft + "px");
+			})
+			
+			$(document).on('mouseup',function(){
+				console.log(1);
+				$(document).unbind('mousemove');
+			})
+		})
+	</script>
+</html>
