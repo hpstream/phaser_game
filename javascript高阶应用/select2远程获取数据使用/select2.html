@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/select2.min.css" />
+		<style type="text/css">
+			select {
+				width: 300px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<select name="" id="e7">
+
+		</select>
+	</body>
+	<script src="../js/jquery-1.12.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/select2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		(function($) {
+
+			var a = $("#e7").select2({
+				ajax: {
+					url: "http://localhost:3000/post/index",
+					dataType: 'json',
+					delay: 250,
+					data: function(params) {
+						return {
+							name: params.term //参数
+						};
+					},
+					processResults: function(data, params) {//处理返回的数据
+						var data = data.data;
+						var array = new Array();
+						if(data) {
+							for(var i = 0; i < data.length; i++) {
+								array.push({ id: data[i].name, text: data[i].value });
+							}
+						}
+						var result = new Object();
+						result.results = array;
+
+						return result;
+					},
+					cache: true
+				},
+				escapeMarkup: function(markup) { return markup; }, // let our custom formatter work
+				//minimumInputLength: 1, //控制输入框输入的字符
+				minimumResultsForSearch: -1,//隐藏输入框  ，注意不能minimumInputLength和minimumResultsForSearch不能同时存在
+				templateResult: formatRepo, // omitted for brevity, see the source of this page
+				templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+			});
+			function formatRepo(repo) { //搜索到结果返回后执行，可以控制下拉选项的样式
+				
+				if(repo.loading) return repo.text;
+				var markup = "<div class=''>" + repo.text + "</div>";
+				return markup;
+			}
+			function formatRepoSelection(repo) { //选中某一个选项是执行
+			   return repo.full_name || repo.text;
+			}		
+			a.on("change",function(){
+				console.log(a.val());
+			})
+			
+			a.on("select2:open", function (e) { console.log("select2:open", e); });
+a.on("select2:close", function (e) { console.log("select2:close", e); });
+a.on("select2:select", function (e) { console.log("select2:select", e); });
+a.on("select2:unselect", function (e) { console.log("select2:unselect", e); });
+ 
+a.on("change", function (e) { console.log("change"); });
+		})($);
+	</script>
+
+</html>
