@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="Example/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</head>
+	<style>
+		
+		 .workFlow {
+			position: relative;
+		}	
+		 .workFlow .bg {
+			background: gray;
+		}
+		
+		 .workFlow .bg .Flow_progress {
+			transition: all 1s;
+			height: 100%;
+		}	
+		.workFlow .stage {
+			cursor: pointer;
+			align-items: center;
+			display: flex;
+			position: absolute;
+			top: -50%;
+			left: 0%;
+			background-color: #001F3F;
+			border-radius: 50%;
+			/* padding: 25px;*/
+			/*height: 50px;
+		    width: 50px;*/
+			justify-content: space-around;
+		}	
+		 .workFlow .stage>span {
+			position: absolute;
+		}
+	</style>
+
+	<body>
+		<div id="div">
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var opt = {
+			_dom: $("#div"),
+			height: "50",
+			flowBackground: "#bd7878",
+			progressBackground: "#78bdb5",
+			animate: true,
+			step: "2",
+			placement:"bottom",
+			stage: [{
+				text: "案由0",
+				left: "0%"
+			}, {
+				text: "案由1",
+				left: "25%"
+			}, {
+				text: "案由2",
+				left: "60%"
+			}, {
+				text: "案由3",
+				left: "100%"
+			}]
+		}
+		workFlow(opt);
+
+		function workFlow(opt) {
+			var str = '<div class="workFlow"><div class="bg"><div class="Flow_progress"></div></div>';
+			//处理背景
+			var bgCss = {
+				borderRadius: opt.height + "px",
+				height: opt.height/2 + "px",
+				backgroundColor: opt.flowBackground ? opt.flowBackground : "gray",
+				marginRight:opt.height +"px"
+			};
+			var domCss = {
+				padding: opt.height / 2 + "px " + opt.height + "px"
+			}
+			opt._dom.css(domCss);
+			opt._dom.append(str);
+			opt._dom.find(".bg").css(bgCss);
+			var progressCss = {
+				width: opt.stage[opt.step].left ? opt.stage[opt.step].left : opt.step * 100 / (opt.stage.length - 1) + "%",
+				backgroundColor: opt.progressBackground,
+				borderRadius: opt.height + "px",
+			}
+			opt._dom.find(".Flow_progress").css({ backgroundColor: progressCss.backgroundColor, width: 0 });
+
+			if(opt.animate == true) {
+				opt._dom.find(".Flow_progress").animate(progressCss, "swing");
+			} else {
+				opt._dom.find(".Flow_progress").css(progressCss);
+			}
+			for(var i = 0; i < opt.stage.length; i++) {
+				var stageCss = {
+					height: opt.height + "px",
+					width: opt.height + "px",
+					marginLeft:i != 0 ?(0 - opt.height*1.5) + "px" :(0 - opt.height)/2 + "px",
+					left: opt.stage[i].left ? opt.stage[i].left : i * 100 / (opt.stage.length - 1) + "%",
+				};
+				var strStage = "<div class ='stage' data-toggle='tooltip' data-placement='"+opt.placement+"' title='"+opt.stage[i].text+"'><span>" + opt.stage[i].text + "</span></div>";
+				$(strStage).appendTo(opt._dom.find(".workFlow")).css(stageCss);
+			}
+  			$('[data-toggle="tooltip"]').tooltip();
+		}
+	</script>
+
+</html>
