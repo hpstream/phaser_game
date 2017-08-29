@@ -41,6 +41,10 @@
 		    width: 50px;*/
 			justify-content: space-around;
 		}	
+		.workFlow .stage:hover{
+			transition: all .5s;
+			transform: scale(1.1);
+		}
 		 .workFlow .stage>span {
 			position: absolute;
 		}
@@ -57,6 +61,7 @@
 			height: "50",
 			flowBackground: "#bd7878",
 			progressBackground: "#78bdb5",
+			fontColor:"white",
 			animate: true,
 			step: "2",//工作流的进度
 			placement:"bottom",//提示框的位置
@@ -86,7 +91,8 @@
 				marginRight:opt.height +"px"
 			};
 			var domCss = {
-				padding: opt.height / 2 + "px " + opt.height + "px"
+				padding: opt.height / 2 + "px " + opt.height + "px",
+				color:opt.fontColor
 			}
 			opt._dom.css(domCss);
 			opt._dom.append(str);
