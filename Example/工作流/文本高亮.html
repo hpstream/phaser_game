@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	</head>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<script type="application/javascript" src="../js/jquery-1.7.1.min.js"></script>
+	<script type="application/javascript" src="highLight.js"></script>
+	<style>
+		#hglighttip {
+			position: absolute;
+			display: none;
+			width: 100px;
+			height: 100px;
+			background: #0074D9;
+		}
+		#hglighttip>div{
+			width: 100px;
+			height: 100px;
+		}
+		body{
+			
+			height: 500px;
+		}
+		.bgColor{
+			background-color: cornflowerblue;
+		}
+		#tst{
+			
+			margin: 0 auto;
+		}
+	</style>
+
+	<body>
+		
+		<div id="tst">
+			this is 顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶发；发发哦i啊佛啊呸发奥i啊发啊啊
+		his is 顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶发；发发哦i啊佛啊呸发奥i啊发啊啊发
+		his is 顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶发；发发哦i啊佛啊呸发奥i啊发啊啊发发test
+		发发哦i啊佛啊呸发奥i啊发啊啊发发test
+		his is 顶顶顶顶顶顶顶顶顶顶顶顶顶顶发；发发哦i啊佛啊呸发奥i啊发啊啊发
+		his is 顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶发；发发哦i啊佛啊呸发奥i啊发啊啊发发test
+		发发哦i啊佛啊呸发啊发发test
+		his is 顶顶顶顶顶顶顶顶顶顶顶发；发发哦i啊佛啊呸发奥i啊发啊啊发发test
+		发发哦i啊佛啊呸发奥i
+		his is 顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶发；发发哦i啊佛啊呸发奥i啊发啊啊发
+		
+		<div id="hglighttip">
+			<div>高亮</div>
+			<div>撤销</div>
+			<div>批注</div>
+		</div>
+		
+		</div>
+		<script>
+		
+			
+			$.highlight("#tst", "#hglighttip",'.bgColor');
+		</script>
+	</body>
+
+</html>
