@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/basscss.css"/>
+			<link rel="stylesheet" type="text/css" href="css/color.css"/>
+		<script src="js/jquery-1.12.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	
+	<style type="text/css">
+		.pointer{
+			cursor: pointer;
+		}
+	</style>
+	<body>
+		<div id="tabs">
+			<div class="tabs_head clearfix">
+				<span class="px1 bg-teal left pointer">1</span>
+				<span class="px1 bg-aqua left pointer">2</span>
+			</div>
+			<div class="tabs_body" style="height: 200px;">
+				<div style="height: 100%;">1</div>
+				<div style="height: 100%;">2</div>
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		
+		function createTabs(id,callback){
+			var root = $(id);
+			var head = root.children(":first");
+			var body =root.children(":last");
+			var index =-1;
+			head.children().on("click",function(e){
+				var obj = $(this);
+				obj.removeClass('ative').siblings().add('ative');
+				body.children().eq(obj.index()).removeClass('hide').siblings().addClass('hide');
+				
+				if(index != obj.index()){
+					index = obj.index();
+					callback(e,body.children().eq(obj.index()));
+				}			
+			})
+			head.children(":first").click();				
+		}
+		
+		createTabs("#tabs",function(e,index){
+			console.log(index);
+		})
+		//策略模式
+		function strategy(){
+			 if(this == window){
+			 	return new strategy();
+			 }
+			 
+			 this.strategies ={};
+			 
+			 
+		}
+		
+		strategy.prototype.add = function(fnName,fn){		
+				this.strategies[fnName] = fn;	
+				return this;
+			
+		}
+		
+		strategy.prototype.use = function(fnName,arg){
+			this.strategies[fnName](arg);
+		}
+		
+		var a = strategy();
+		
+		a.add("a",function(arg){console.log(arg)})
+		a.use("a","a333rg");		
+	
+		
+	</script>
+</html>

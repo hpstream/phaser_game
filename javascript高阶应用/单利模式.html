@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		
+		var single = (function(){
+			var instance = null;
+			
+			function aa(){};
+			return function(){
+				if(!instance){
+					instance = new aa();
+					return instance;
+				}else{
+					return instance;
+				}
+			}
+		})();
+		
+		var s1 = new single();
+		var s2 = new single();
+	</script>
+</html>
