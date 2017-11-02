@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bootstrap 实例</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+	.circleProgress_wrapper{
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            position: relative;
+            border:1px solid #ddd;
+        }
+
+        .wrapper{
+            width: 100px;
+            height: 200px;
+            position: absolute;
+            top:0;
+            overflow: hidden;
+        }
+        .right{
+            right:0;
+        }
+        .left{
+            left:0;
+        }
+        .circleProgress{
+		    width: 200px;
+            height: 200px;
+		    border:20px solid gray;
+		    border-radius: 50%;
+		    position: absolute;
+		    top:0;
+		}
+		.leftcircle{
+		    border-bottom:20px solid green;
+		    border-left:20px solid green;
+		    left: 0;
+		    
+		    transform: rotate(30deg);
+		}
+		.rightcircle{
+		    border-top:20px solid green;
+		    border-right:20px solid green;
+		    right:0;
+		    transform: rotate(45deg);
+		    
+		}
+       
+	</style>
+	
+</head>
+<body >
+<div class="circleProgress_wrapper">
+       <div class="wrapper left">
+            <div class="circleProgress leftcircle"></div>
+        </div>
+        <div class="wrapper right">
+            <div class="circleProgress rightcircle"></div>
+        </div>
+      
+ </div>
+	
+
+
+</body>
+</html>

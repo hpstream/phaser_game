@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div class="'f_cardTable_footer">
+			
+		
+	</body>
+
+	<script type="text/javascript">
+		var  params = [
+			{ item: [{ name: "考评时间", text: "2017" }, { name: "上报截止时间", text: "2017" }] }
+		]
+
+		function initFooter(list) {
+			var str = '<div class="f_cardTable_footer">';
+			for(var i=0;i<list.length;i++){
+				var cols = list[i].item;
+				var length = cols.length;
+				var court = Math.floor(10000 / length)/100;;
+				str += '<div class="f_row">+
+				for(var j=0;j< length;j++){
+					str += '<div class="f-col'+j+'" style="width:'+court+'%;">'+
+								'<label class="f_name">'+cols[j].text+'</lable>'+
+								'<div class="f_text">{{'+cols[j].name+'}}</div>'+
+							'</div>';
+							
+				}
+				str += </div>';
+				
+			}
+			str+='</div>';
+			return str;
+		}
+		
+		function initFooter(list) {
+			var cols;
+			var length;
+			var court ;
+			var footer = $("<div>").addClass("f_cardTable_footer");
+			var f_row;//行
+			var f_col;//列
+			for(var i=0;i<list.length;i++){
+				cols = list[i].item||[];
+				length = cols.length;
+				court = 100/length;
+				f_row =$("<div>").addClass("f_row");//创建行
+				for(var j=0;j<length;j++){
+					//创建每一列;
+					f_col = '<div class="f-col'+j+'" style="width:'+court+'%;">'+
+								'<label class="f_name">'+cols[j].text+'</lable>+
+								'<div class="f_text">{{'+cols[j].name+'}}</div>+
+							'</div>';
+					//把每一个放到对应的每一行中；
+					f_row.append(f_col);	
+				}
+				footer.append(f_row);	
+			}
+			
+			return footer[0].outerHTML;
+		}
+	</script>
+
+</html>

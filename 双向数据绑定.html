@@ -5,16 +5,27 @@
 		<title></title>
 	</head>
 	<body>
+		<input type="text" id="text1" />
+		<input type="text" id="text2" />
 	</body>
 	
 	<script>
 	
 	
-		function Observer(value){
-			this.value = value;
-			this.walk(value);
-		}
-		
-		Observer.prototype.walk = function()
+		var input1 = document.querySelector("#text1");
+		var input2 = document.querySelector("#text2");
+		var data = {};
+			Object.defineProperty(data, "name", {
+			  configurable: true,
+			  get: function(){
+			      return input1.value
+			  },
+			  set: function(newValue){
+			    input1.value = newValue;
+			    input2.value = newValue;
+			  }
+			})
+	
+
 	</script>
 </html>

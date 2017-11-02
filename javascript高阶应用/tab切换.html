@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+</head>
+<style type="text/css">
+	
+
+
+
+</style>
+<body>
+	
+<ul class="nav">
+  <li data-hash="index">首页</li>
+  <li data-hash="news">新闻</li>
+  <li data-hash="sports">体育</li>
+</ul>
+<div class="cont">
+  <div data-content="index">首页内容</div>
+  <div data-content="news">新闻内容</div>
+  <div data-content="sports">体育内容</div>
+</div>
+<script>
+  window.onload=function(){
+    var oLi=document.querySelectorAll('li');
+    var oCont=document.querySelector('.cont').querySelectorAll('div');
+    var iNow=0;
+    history.replaceState('index','','?index');
+    changeCont("index");
+    for (var i = 0; i < oLi.length; i++) {
+      oLi[i].onclick=function(){
+        var hash=this.dataset.hash;
+        history.pushState({},'','?'+hash);//第二个参数是标题很多浏览器没实现便可不写，加上第三个参数便可以改变网址，但是是虚假的网址刷新就没有了，所以得配合后端使用
+        changeCont(hash);
+      }
+    };
+    
+    function changeCont(hash){//根据hash改变内容
+      for(var i=0;i<oCont.length;i++){
+        if(hash==oCont[i].dataset.content){
+          oCont[i].style.display="block";
+        }else{
+          oCont[i].style.display="none";
+        }
+      }
+    }
+    window.onpopstate=function(ev){
+      console.log(ev);
+      changeCont(ev.state);
+    }
+
+  }
+</script>
+</body>
+</html>

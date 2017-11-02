@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="utf-8"></script>
+</head>
+<body >
+	
+
+
+<!-- 和下面的一样 -->
+<div id="app">
+	<template>
+		<span v-text="msg"></span>
+		<div @click='click1()'>点击22</div>
+	</template>
+</div>
+	
+
+</body>
+
+<script type="text/javascript">
+	var Main = {
+		data: function(){
+			return  {
+				msg:'dadadadda'
+			}
+		},
+		methods: {
+			click1(){
+				console.log(this);
+				this.msg = 'dd'
+			}
+		}
+	}
+var Ctor = Vue.extend(Main);
+new Ctor().$mount('#app')
+</script>
+</html>
